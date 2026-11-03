@@ -26,6 +26,7 @@ class ServicioClienteTest {
         cliente.setCedula("1723456789");
         cliente.setNombre("Melany");
         cliente.setApellido("Nono");
+        cliente.setEmail("melany123@gmail.com");
     }
 
     @Test
@@ -37,6 +38,7 @@ class ServicioClienteTest {
         assertEquals("1723456789", resultado.getCedula());
         assertEquals("Melany", resultado.getNombre());
         assertEquals("Nono", resultado.getApellido());
+        assertEquals("melany123@gmail.com", resultado.getEmail());
         assertEquals(1, servicio.listar().size());
     }
 
@@ -48,6 +50,7 @@ class ServicioClienteTest {
         duplicado.setCedula("1723456789");
         duplicado.setNombre("Carlos");
         duplicado.setApellido("Perez");
+        duplicado.setEmail("crlos@gmail.com");
 
         Cliente resultado = servicio.crear(duplicado);
 
@@ -66,6 +69,8 @@ class ServicioClienteTest {
         assertEquals("1723456789", resultado.getCedula());
         assertEquals("Melany", resultado.getNombre());
         assertEquals("Nono", resultado.getApellido());
+        assertEquals("melany123@gmail.com", resultado.getEmail());
+        
     }
 
     @Test
@@ -83,12 +88,15 @@ class ServicioClienteTest {
         segundoCliente.setCedula("0912345678");
         segundoCliente.setNombre("Ana");
         segundoCliente.setApellido("Lopez");
+        segundoCliente.setEmail("ana@gmail.com");
 
         servicio.crear(segundoCliente);
 
         assertEquals(2, servicio.listar().size());
         assertTrue(servicio.listar().contains(cliente));
         assertTrue(servicio.listar().contains(segundoCliente));
+        assertEquals("melany123@gmail.com", cliente.getEmail());
+        assertEquals("ana@gmail.com", segundoCliente.getEmail());
     }
 
     @Test
@@ -106,6 +114,7 @@ class ServicioClienteTest {
         clienteActualizado.setCedula("1723456789");
         clienteActualizado.setNombre("Maria");
         clienteActualizado.setApellido("Perez");
+        clienteActualizado.setEmail("maria@gmail.com");
 
         Cliente resultado = servicio.actualizar(
                 "1723456789", clienteActualizado);
@@ -113,6 +122,7 @@ class ServicioClienteTest {
         assertNotNull(resultado);
         assertEquals("Maria", resultado.getNombre());
         assertEquals("Perez", resultado.getApellido());
+        assertEquals("maria@gmail.com", resultado.getEmail());
     }
 
     @Test
@@ -121,6 +131,7 @@ class ServicioClienteTest {
         clienteActualizado.setCedula("0999999999");
         clienteActualizado.setNombre("Carlos");
         clienteActualizado.setApellido("Perez");
+        clienteActualizado.setEmail("crlos@gmail.com");
 
         Cliente resultado = servicio.actualizar(
                 "0999999999", clienteActualizado);
